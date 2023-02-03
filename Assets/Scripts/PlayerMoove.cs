@@ -19,6 +19,8 @@ public class PlayerMoove : MonoBehaviour
     public float Y;
     public float Z;
 
+    public Rigidbody _rb;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -31,10 +33,7 @@ public class PlayerMoove : MonoBehaviour
         float X = Input.GetAxisRaw("Horizontal");
         float Z = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Count = 5;
-        }
+        
         if( Count > 0)
         {
             Y = Y + Jump + Count;
@@ -44,7 +43,15 @@ public class PlayerMoove : MonoBehaviour
         {
             Y = Y - 1;
         }
-        Self.transform.Translate(X * speed * Time.deltaTime, Y * Time.deltaTime, Z * speed * Time.deltaTime);
+        _rb.AddRelativeForce(X * speed, Y, Z * speed);
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Count = 5;
+        }
     }
 
     public void Jumping()
