@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buttons : MonoBehaviour
+public class UiButtons : MonoBehaviour
 {
     public GameObject p;
     public GameObject Player;
 
-    public void Return()
+    public void ReturnButton()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -15,7 +15,7 @@ public class Buttons : MonoBehaviour
         p.SetActive(false);
     }
 
-    public void Exit()
+    public void ExitButton()
     {
         Application.Quit();
     }
